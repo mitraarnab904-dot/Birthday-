@@ -1,101 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Birthday Nabanita ❤️</title>
+  <title>Happy Birthday</title>
   <style>
-    body{
-      margin:0;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:linear-gradient(135deg,#ff758c,#ff7eb3);
-      font-family:Arial,sans-serif;
-      overflow:hidden;
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
     }
-    .card{
-      background:#fff;
-      padding:30px;
-      border-radius:20px;
-      text-align:center;
-      width:320px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.3);
-      z-index:10;
+    h1 {
+      font-size: 40px;
+      color: white;
+      text-align: center;
+      z-index: 2;
     }
-    h1{
-      color:#ff4d6d;
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: red;
+      animation: fall 3s linear infinite;
     }
-    button{
-      margin-top:20px;
-      padding:10px 20px;
-      border:none;
-      border-radius:20px;
-      background:#ff4d6d;
-      color:#fff;
-      font-size:16px;
-    }
-    canvas{
-      position:fixed;
-      top:0;
-      left:0;
-      pointer-events:none;
+    @keyframes fall {
+      0% { transform: translateY(-100px); }
+      100% { transform: translateY(110vh); }
     }
   </style>
 </head>
 <body>
 
-<canvas id="confetti"></canvas>
-
-<div class="card">
-  <h1 id="wish">Happy Birthday Nabanita 🎂💖</h1>
-  <button onclick="nextWish()">Next Surprise 🎁</button>
-</div>
+<h1>🎉 Happy Birthday<br>Nabanita 💖</h1>
 
 <script>
-const wishes = [
-  "Happy Birthday Nabanita ❤️",
-  "You are very special 💖",
-  "May your smile always shine ✨",
-  "Wishing you endless happiness 🌸",
-  "This day is special because YOU were born 💫"
-];
-
-let i = 0;
-function nextWish(){
-  document.getElementById("wish").innerText = wishes[i];
-  i = (i + 1) % wishes.length;
-}
-
-// Confetti
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-
-let dots = [];
-for(let i=0;i<120;i++){
-  dots.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    r:Math.random()*6+2,
-    d:Math.random()*3+1
-  });
-}
-
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="rgba(255,77,109,0.8)";
-  ctx.beginPath();
-  dots.forEach(d=>{
-    ctx.moveTo(d.x,d.y);
-    ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
-    d.y += d.d;
-    if(d.y>canvas.height){ d.y=0; }
-  });
-  ctx.fill();
-}
-setInterval(draw,30);
+  for (let i = 0; i < 50; i++) {
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDelay = Math.random() * 3 + "s";
+    c.style.background =
+      ["#ff0","#0f0","#0ff","#f0f","#f00"][Math.floor(Math.random()*5)];
+    document.body.appendChild(c);
+  }
 </script>
 
 </body>
